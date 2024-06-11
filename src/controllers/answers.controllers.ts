@@ -18,10 +18,11 @@ export const sendAnswerController = async (
   req: Request<ParamsDictionary, unknown, SendAnswerRequestBody>,
   res: Response
 ) => {
-  const { question_id, answer } = req.body;
+  const { question_id, no, answer } = req.body;
 
   const result = await answersService.send(
     ObjectId.createFromHexString(question_id),
+    no,
     answer
   );
 

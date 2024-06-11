@@ -11,9 +11,10 @@ class AnswerService {
     return answers;
   }
 
-  async send(question_id: ObjectId, answer: string) {
+  async send(question_id: ObjectId, no: number, answer: string) {
     const _answer = new Answer({
       question_id,
+      no,
       answer
     });
 
