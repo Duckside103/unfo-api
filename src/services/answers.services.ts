@@ -1,29 +1,35 @@
 import { ObjectId } from 'mongodb';
 
-import Answer from '~/models/schemas/Answer.schema';
-
 import databaseService from './database.services';
 
-class AnswerService {
+class AnswersService {
   async get() {
     const answers = databaseService.answers.find().toArray();
 
     return answers;
   }
 
-  async send(question_id: ObjectId, no: number, answer: string) {
-    const _answer = new Answer({
-      question_id,
-      no,
-      answer
-    });
-
-    const result = await databaseService.answers.insertOne(_answer);
+  async send(question_id: ObjectId, no: number, value: string[]) {
+    const result = await databaseService.answers.updateOne(
+      {
+        question_id: question_id
+      },
+      {
+        $set: {
+          no,
+          value,
+          updated_at: new Date()
+        }
+      },
+      {
+        upsert: true
+      }
+    );
 
     return result;
   }
 }
 
-const answersService = new AnswerService();
+const answersService = new AnswersService();
 
 export default answersService;

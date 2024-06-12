@@ -18,8 +18,9 @@ class QuestionService {
         ...question,
         _id: question._id.toString(),
         created_at: question.created_at.toISOString(),
-        answer: matchAnswer?.answer || ''
-      };
+        answer: matchAnswer?.value || [],
+        no: matchAnswer?.no
+      } as GetQuestionResponse;
     });
 
     return questionsWithAnswer;

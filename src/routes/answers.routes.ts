@@ -2,7 +2,7 @@ import express from 'express';
 
 import {
   getAnswersController,
-  sendAnswerController
+  sendAnswersController
 } from '~/controllers/answers.controllers';
 import { wrapRequestHandler } from '~/utils/handlers';
 
@@ -20,6 +20,6 @@ answersRouter.get('/', wrapRequestHandler(getAnswersController));
  * @path answers/
  * @aim Send a answer
  */
-answersRouter.post('/', wrapRequestHandler(sendAnswerController));
+answersRouter.post('/', wrapRequestHandler(sendAnswersController));
 
 export default answersRouter;

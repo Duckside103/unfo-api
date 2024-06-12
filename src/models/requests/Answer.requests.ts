@@ -1,5 +1,5 @@
-export interface SendAnswerRequestBody {
+export interface SendAnswersRequestBody {
   question_id: string;
   no: number;
-  answer: string;
+  value: string[];
 }
