@@ -3,11 +3,11 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
-import { defaultErrorHandler } from './middlewares/errors.middlewares';
-import answersRouter from './routes/answers.routes';
-import filesRouter from './routes/files.routes';
-import questionsRouter from './routes/questions.routes';
-import databaseService from './services/database.services';
+import { defaultErrorHandler } from './src/middlewares/errors.middlewares';
+import answersRouter from './src/routes/answers.routes';
+import filesRouter from './src/routes/files.routes';
+import questionsRouter from './src/routes/questions.routes';
+import databaseService from './src/services/database.services';
 
 const app = express();
 app.use(cors());
