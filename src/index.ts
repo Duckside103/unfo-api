@@ -5,6 +5,7 @@ import express from 'express';
 
 import { defaultErrorHandler } from './middlewares/errors.middlewares';
 import answersRouter from './routes/answers.routes';
+import filesRouter from './routes/files.routes';
 import questionsRouter from './routes/questions.routes';
 import databaseService from './services/database.services';
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/questions', questionsRouter);
 app.use('/answers', answersRouter);
+app.use('/files', filesRouter);
 
 databaseService.connect();
 
