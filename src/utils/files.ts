@@ -28,3 +28,11 @@ export const uploadImage = async (file: Express.Multer.File) => {
 
   return data;
 };
+
+export const deleteImage = async (fileId: string) => {
+  const response = await google.drive({ version: 'v3', auth }).files.delete({
+    fileId
+  });
+
+  return response;
+};

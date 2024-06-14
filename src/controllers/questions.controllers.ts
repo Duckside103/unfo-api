@@ -55,10 +55,12 @@ export const deleteQuestionController = async (
   req: Request<DeleteQuestionRequestParams>,
   res: Response
 ) => {
-  const { id } = req.params;
+  const { questionId } = req.params;
 
-  const deletedQuestion = await questionsService.delete(id);
-  const deletedAnswer = await answersService.delete(id);
+  const [deletedQuestion, deletedAnswer] = await Promise.all([
+    questionsService.delete(questionId),
+    answersService.delete(questionId)
+  ]);
 
   return res.status(HttpStatus.OK).json({
     result: {

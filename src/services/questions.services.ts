@@ -2,6 +2,7 @@ import { ObjectId } from 'mongodb';
 
 import { GetQuestionResponse } from '~/models/responses/Question.responses';
 import Question from '~/models/schemas/Question.schema';
+import { deleteImage } from '~/utils/files';
 
 import databaseService from './database.services';
 
@@ -38,6 +39,10 @@ class QuestionService {
     const deletedQuestion = await databaseService.questions.findOneAndDelete({
       _id: ObjectId.createFromHexString(questionId)
     });
+
+    if (deletedQuestion?.image_id) {
+      await deleteImage(deletedQuestion.image_id as string);
+    }
 
     return deletedQuestion;
   }
