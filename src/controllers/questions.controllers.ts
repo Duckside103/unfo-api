@@ -2,8 +2,12 @@ import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 
 import { HttpStatus } from '~/constants/http';
-import { SendQuestionRequestBody } from '~/models/requests/Question.requests';
+import {
+  DeleteQuestionRequestParams,
+  SendQuestionRequestBody
+} from '~/models/requests/Question.requests';
 import Question from '~/models/schemas/Question.schema';
+import answersService from '~/services/answers.services';
 import questionsService from '~/services/questions.services';
 import { uploadImage } from '~/utils/files';
 
@@ -43,6 +47,23 @@ export const sendQuestionController = async (
     result: {
       uploadedImages,
       insertedQuestions
+    }
+  });
+};
+
+export const deleteQuestionController = async (
+  req: Request<DeleteQuestionRequestParams>,
+  res: Response
+) => {
+  const { id } = req.params;
+
+  const deletedQuestion = await questionsService.delete(id);
+  const deletedAnswer = await answersService.delete(id);
+
+  return res.status(HttpStatus.OK).json({
+    result: {
+      deletedQuestion,
+      deletedAnswer
     }
   });
 };

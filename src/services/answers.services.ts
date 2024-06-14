@@ -28,6 +28,14 @@ class AnswersService {
 
     return result;
   }
+
+  async delete(questionId: string) {
+    const deletedAnswer = await databaseService.answers.findOneAndDelete({
+      question_id: ObjectId.createFromHexString(questionId)
+    });
+
+    return deletedAnswer;
+  }
 }
 
 const answersService = new AnswersService();

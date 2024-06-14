@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 import { GetQuestionResponse } from '~/models/responses/Question.responses';
 import Question from '~/models/schemas/Question.schema';
 
@@ -30,6 +32,14 @@ class QuestionService {
     const result = await databaseService.questions.insertMany(questions);
 
     return result;
+  }
+
+  async delete(questionId: string) {
+    const deletedQuestion = await databaseService.questions.findOneAndDelete({
+      _id: ObjectId.createFromHexString(questionId)
+    });
+
+    return deletedQuestion;
   }
 }
 

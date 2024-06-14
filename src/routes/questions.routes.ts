@@ -1,6 +1,7 @@
 import express from 'express';
 
 import {
+  deleteQuestionController,
   getQuestionsController,
   sendQuestionController
 } from '~/controllers/questions.controllers';
@@ -25,5 +26,12 @@ questionsRouter.post(
   filesValidator('question'),
   wrapRequestHandler(sendQuestionController)
 );
+
+/**
+ * @method DELETE
+ * @path questions/:id
+ * @aim Delete a question
+ */
+questionsRouter.delete('/:id', wrapRequestHandler(deleteQuestionController));
 
 export default questionsRouter;
