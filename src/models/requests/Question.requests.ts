@@ -2,6 +2,6 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 export interface SendQuestionRequestBody {}
 
-export interface DeleteQuestionRequestBody {
+export interface DeleteQuestionRequestParams extends ParamsDictionary {
   questionId: string;
 }

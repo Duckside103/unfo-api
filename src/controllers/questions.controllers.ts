@@ -3,7 +3,7 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 import { HttpStatus } from '~/constants/http';
 import {
-  DeleteQuestionRequestBody,
+  DeleteQuestionRequestParams,
   SendQuestionRequestBody
 } from '~/models/requests/Question.requests';
 import Question from '~/models/schemas/Question.schema';
@@ -52,10 +52,11 @@ export const sendQuestionController = async (
 };
 
 export const deleteQuestionController = async (
-  req: Request<ParamsDictionary, unknown, DeleteQuestionRequestBody>,
+  req: Request<DeleteQuestionRequestParams>,
   res: Response
 ) => {
-  const { questionId } = req.body;
+  const { questionId } = req.params;
+  console.log('>> Check | questionId:', questionId);
 
   const [deletedQuestion, deletedAnswer] = await Promise.all([
     questionsService.delete(questionId),
