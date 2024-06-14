@@ -3,7 +3,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 import Answer from '~/models/schemas/Answer.schema';
 import Question from '~/models/schemas/Question.schema';
 
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cheat.mk3uvwd.mongodb.net/?retryWrites=true&w=majority&appName=cheat`;
+const uri = `mongodb+srv://anhvuwoof103:chainuocngot@cheat.mk3uvwd.mongodb.net/?retryWrites=true&w=majority&appName=cheat`;
 
 class DatabaseService {
   private client: MongoClient;
