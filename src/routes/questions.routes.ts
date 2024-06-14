@@ -29,12 +29,9 @@ questionsRouter.post(
 
 /**
  * @method DELETE
- * @path questions/:questionId
+ * @path questions/
  * @aim Delete a question
  */
-questionsRouter.delete(
-  '/:questionId',
-  wrapRequestHandler(deleteQuestionController)
-);
+questionsRouter.delete('/', wrapRequestHandler(deleteQuestionController));
 
 export default questionsRouter;
