@@ -31,6 +31,7 @@ export const sendQuestionController = async (
   const uploadedImages = await Promise.all(
     (files as Express.Multer.File[]).map(uploadImage)
   );
+  console.log('>> Check | uploadedImages:', uploadedImages);
 
   /**
    * step1: Store image_path in Database

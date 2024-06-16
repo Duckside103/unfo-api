@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import { ObjectId } from 'mongodb';
 import path from 'path';
 import Stream from 'stream';
 
@@ -14,13 +15,15 @@ export const uploadImage = async (file: Express.Multer.File) => {
   const bufferStream = new Stream.PassThrough();
   bufferStream.end(file.buffer);
 
+  const _id = new ObjectId();
+
   const { data } = await google.drive({ version: 'v3', auth }).files.create({
     media: {
       mimeType: file.mimetype,
       body: bufferStream
     },
     requestBody: {
-      name: file.originalname,
+      name: _id.toString(),
       parents: [process.env.DRIVE_FOLDER_ID as string]
     },
     fields: 'id,name'
