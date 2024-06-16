@@ -29,7 +29,10 @@ export const uploadImage = async (file: Express.Multer.File) => {
     fields: 'id,name'
   });
 
-  return data;
+  return data as {
+    id: string;
+    name: string;
+  };
 };
 
 export const deleteImage = async (fileId: string) => {

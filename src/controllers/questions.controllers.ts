@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
+import { ObjectId } from 'mongodb';
 
 import { HttpStatus } from '~/constants/http';
 import {
@@ -31,7 +32,6 @@ export const sendQuestionController = async (
   const uploadedImages = await Promise.all(
     (files as Express.Multer.File[]).map(uploadImage)
   );
-  console.log('>> Check | uploadedImages:', uploadedImages);
 
   /**
    * step1: Store image_path in Database
@@ -39,6 +39,7 @@ export const sendQuestionController = async (
   const questions = uploadedImages.map(
     (uploadedImage) =>
       new Question({
+        _id: ObjectId.createFromHexString(uploadedImage.name),
         image_id: uploadedImage.id as string
       })
   );
