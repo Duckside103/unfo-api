@@ -56,7 +56,6 @@ export const deleteQuestionController = async (
   res: Response
 ) => {
   const { questionId } = req.params;
-  console.log('>> Check | questionId:', questionId);
 
   const [deletedQuestion, deletedAnswer] = await Promise.all([
     questionsService.delete(questionId),
