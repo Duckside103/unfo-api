@@ -4,7 +4,14 @@ import databaseService from './database.services';
 
 class AnswersService {
   async get() {
-    const answers = databaseService.answers.find().toArray();
+    const answers = databaseService.answers
+      .find()
+      .project({
+        no: 1,
+        value: 1,
+        _id: 0
+      })
+      .toArray();
 
     return answers;
   }
