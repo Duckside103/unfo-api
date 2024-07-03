@@ -15,7 +15,7 @@ class DatabaseService {
             console.log('Pinged your deployment. You successfully connected to MongoDB!');
         }
         catch (error) {
-            console.log('Can not connect to MongoDB: ', error);
+            console.log('Can not connect to MongoDB! Error: ', error);
         }
     }
     get questions() {

@@ -7,7 +7,14 @@ const mongodb_1 = require("mongodb");
 const database_services_1 = __importDefault(require("./database.services"));
 class AnswersService {
     async get() {
-        const answers = database_services_1.default.answers.find().toArray();
+        const answers = database_services_1.default.answers
+            .find()
+            .project({
+            no: 1,
+            value: 1,
+            _id: 0
+        })
+            .toArray();
         return answers;
     }
     async send(question_id, no, value) {
