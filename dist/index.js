@@ -20,5 +20,5 @@ app.use('/files', files_routes_1.default);
 database_services_1.default.connect();
 app.use(errors_middlewares_1.defaultErrorHandler);
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port ${process.env.PORT}`);
+    console.log(`App listening on port ${process.env.PORT}!`);
 });
