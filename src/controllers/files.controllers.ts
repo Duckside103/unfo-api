@@ -5,7 +5,7 @@ export const downloadExtensionController = async (
   req: Request,
   res: Response
 ) => {
-  const file = path.resolve('src/assets/c_Lab_207.zip');
+  const file = path.resolve('src/assets/c_Lab_207.rar');
 
   return res.download(file);
 };
